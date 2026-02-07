@@ -1,0 +1,40 @@
+name: openclaw
+icon: openclaw
+type: service
+title: OpenClaw
+hostname: openclaw
+containers:
+- name: openclaw
+  image: wodby/openclaw
+options:
+- version: '2026.2.3'
+  tag: '2026.2.3'
+endpoints:
+- name: openclaw
+  ports:
+  - name: openclaw
+    number: 18789
+    protocol: http
+labels:
+- openclaw
+
+tokens:
+- name: gatewayToken
+  generate:
+    regex: '[0-9a-z-]{32}'
+
+helm:
+  name: wodby
+  source: oci://registry-1.docker.io/wodby/openclaw
+  chart: oci://registry-1.docker.io/wodby/openclaw
+  version: 0.1.0
+  - name: node
+    labels: podLabels
+    annotations: podAnnotations
+    env: envVars
+    resources: resources
+    volumes: volumes
+    mounts: volumeMounts
+  values:
+  - name: gatewayToken
+    value: '{{gatewayToken}}'
