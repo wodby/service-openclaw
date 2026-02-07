@@ -28,7 +28,7 @@ helm:
   source: oci://registry-1.docker.io/wodby/openclaw
   chart: oci://registry-1.docker.io/wodby/openclaw
   version: 0.1.0
-  - name: node
+  - name: openclaw
     labels: podLabels
     annotations: podAnnotations
     env: envVars
