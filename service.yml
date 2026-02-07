@@ -19,7 +19,7 @@ labels:
   - openclaw
 
 tokens:
-  - name: gatewayToken
+  - name: gateway_token
     generate:
       regex: '[0-9a-z-]{32}'
 
@@ -38,4 +38,4 @@ helm:
       mounts: volumeMounts
   values:
     - name: gatewayToken
-      value: '{{gatewayToken}}'
+      value: '{{gateway_token}}'
