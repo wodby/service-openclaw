@@ -20,7 +20,7 @@ tokens:
 integrations:
 - name: tailscale
   title: Tailscale
-  type: mesh_vpn
+  type: vpn
   required: true
   multiple: false
   labels:
