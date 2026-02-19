@@ -72,4 +72,4 @@ helm:
     - name: gatewayToken
       value: '{{gateway_token}}'
     - name: tsAuthKey
-      value: '{{integrations.tailscale.authKey}}'
+      value: '{{integrations.tailscale.key}}'
