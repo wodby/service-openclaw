@@ -9,12 +9,6 @@ containers:
 options:
   - version: '2026.2.3'
     tag: '2026.2.3'
-endpoints:
-  - name: openclaw
-    ports:
-      - name: openclaw
-        number: 18789
-        protocol: http
 labels:
   - openclaw
 
@@ -22,6 +16,44 @@ tokens:
   - name: gateway_token
     generate:
       regex: '[0-9a-z-]{32}'
+
+integrations:
+- name: tailscale
+  title: Tailscale
+  type: mesh_vpn
+  required: true
+  multiple: false
+  labels:
+  - tailscale
+
+volumes:
+- name: data
+  title: Data
+  size: 1
+  optional: false
+  helm: 
+    labels: persistence.labels    
+    values:
+    - name: persistence.enabled
+      value: true
+    - name: persistence.size
+      value: '{{volumes.data.size}}Gi'
+    # mandatory to use existing claim since this volume will have import function
+    # we will mount different claim after import and doing it through sts's volumeclaimtemplates is not supported
+# disabled due to missing imports (required for this to work – we create PVC manually instead of using volumeClaimTemplate)
+#    - name: primary.persistence.existingClaim
+#      value: '{{volumes.spool.claim}}'
+- name: ts-state
+  title: Tailscale state
+  size: 1
+  optional: false
+  helm: 
+    labels: tsPersistence.labels    
+    values:
+    - name: tsPersistence.enabled
+      value: true
+    - name: tsPersistence.size
+      value: '{{volumes.ts-state.size}}Gi'
 
 helm:
   name: wodby
@@ -39,3 +71,5 @@ helm:
   values:
     - name: gatewayToken
       value: '{{gateway_token}}'
+    - name: tsAuthKey
+      value: '{{integrations.tailscale.authKey}}'
