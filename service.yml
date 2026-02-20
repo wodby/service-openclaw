@@ -73,3 +73,5 @@ helm:
       value: '{{gateway_token}}'
     - name: tsAuthKey
       value: '{{integrations.tailscale.key}}'
+    - name: tsHostname
+      value: '{{service.name}}'
