@@ -12,6 +12,14 @@ options:
 labels:
   - openclaw
 
+endpoints:
+- name: openclaw
+  ports:
+  - name: openclaw
+    number: 18789
+    protocol: http
+    main: true
+
 tokens:
   - name: gateway_token
     generate:
