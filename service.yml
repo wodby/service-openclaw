@@ -5,10 +5,10 @@ title: OpenClaw
 hostname: openclaw
 containers:
   - name: openclaw
-    image: alpine/openclaw
+    image: wodby/openclaw
 options:
-  - version: '2026.2.22'
-    tag: '2026.2.22'
+  - version: '2026'
+    tag: '2026'
 labels:
   - openclaw
 
