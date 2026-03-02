@@ -23,7 +23,7 @@ endpoints:
 
 env:
 - name: OPENCLAW_GATEWAY_CONTROLUI_ALLOWED_ORIGIN
-  value: 'http://{{service.host}}.{{instance.namespace}}.svc.cluster.local:{{mainPort.number}}'
+  value: 'http://{{service.host}}.{{instance.namespace}}.svc.cluster.local:{{service.mainPort.number}}'
 
 tokens:
   - name: gateway_token
