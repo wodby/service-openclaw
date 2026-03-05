@@ -7,8 +7,8 @@ containers:
   - name: openclaw
     image: wodby/openclaw
 options:
-  - version: '2026'
-    tag: '2026'
+  - version: '2026.3'
+    tag: '2026.3'
 labels:
   - openclaw
 
