@@ -60,7 +60,7 @@ helm:
   chart: oci://registry-1.docker.io/wodby/openclaw
   version: 0.1.0
   configurations:
-    - name: openclaw
+    - container: openclaw
       labels: podLabels
       annotations: podAnnotations
       env: envVars
