@@ -2,7 +2,6 @@ name: openclaw
 icon: openclaw
 type: service
 title: OpenClaw
-hostname: openclaw
 containers:
   - name: openclaw
     image: wodby/openclaw
