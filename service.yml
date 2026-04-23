@@ -60,7 +60,10 @@ helm:
     value: '{{gateway_token}}'
 
 workloads:
-- id: main
+- name: main
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: '{{service.helm.release}}'
   kind: statefulset
   primary: true
   helm:
