@@ -2,9 +2,6 @@ name: openclaw
 icon: openclaw
 type: service
 title: OpenClaw
-containers:
-  - name: openclaw
-    image: wodby/openclaw
 options:
   - version: '2026'
     tag: '2026'
@@ -58,15 +55,21 @@ helm:
   source: oci://registry-1.docker.io/wodby/openclaw
   chart: oci://registry-1.docker.io/wodby/openclaw
   version: 0.1.0
-  configurations:
-    - container: openclaw
-      labels: podLabels
-      annotations: podAnnotations
-      env: envVars
-      resources: resources
-      volumes: extraVolumes
-      mounts: extraVolumeMounts
   values:
     - name: gatewayToken
       value: '{{gateway_token}}'
-
+workloads:
+  - id: main
+    kind: statefulset
+    primary: true
+    containers:
+      - name: openclaw
+        image: wodby/openclaw
+        helm:
+          env: envVars
+          resources: resources
+          mounts: extraVolumeMounts
+    helm:
+      labels: podLabels
+      annotations: podAnnotations
+      volumes: extraVolumes
