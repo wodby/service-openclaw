@@ -3,10 +3,10 @@ icon: openclaw
 type: service
 title: OpenClaw
 options:
-  - version: '2026'
-    tag: '2026'
+- version: '2026'
+  tag: '2026'
 labels:
-  - openclaw
+- openclaw
 
 endpoints:
 - name: openclaw
@@ -28,17 +28,17 @@ env:
   value: '["http://127.0.0.1:18789", "https://{{service.primaryHost}}", "http://{{service.host}}.{{instance.namespace}}.svc.cluster.local:{{service.mainPort.number}}"]'
 
 tokens:
-  - name: gateway_token
-    generate:
-      regex: '[0-9a-z-]{32}'
+- name: gateway_token
+  generate:
+    regex: '[0-9a-z-]{32}'
 
 volumes:
 - name: data
   title: Data
   size: 1
   optional: false
-  helm: 
-    labels: persistence.labels    
+  helm:
+    labels: persistence.labels
     values:
     - name: persistence.enabled
       value: true
@@ -56,20 +56,21 @@ helm:
   chart: oci://registry-1.docker.io/wodby/openclaw
   version: 0.1.0
   values:
-    - name: gatewayToken
-      value: '{{gateway_token}}'
+  - name: gatewayToken
+    value: '{{gateway_token}}'
+
 workloads:
-  - id: main
-    kind: statefulset
-    primary: true
-    containers:
-      - name: openclaw
-        image: wodby/openclaw
-        helm:
-          env: envVars
-          resources: resources
-          mounts: extraVolumeMounts
+- id: main
+  kind: statefulset
+  primary: true
+  helm:
+    labels: podLabels
+    annotations: podAnnotations
+    volumes: extraVolumes
+  containers:
+  - name: openclaw
+    image: wodby/openclaw
     helm:
-      labels: podLabels
-      annotations: podAnnotations
-      volumes: extraVolumes
+      env: envVars
+      resources: resources
+      mounts: extraVolumeMounts
