@@ -4,7 +4,7 @@ type: service
 title: OpenClaw
 options:
 - version: '2026'
-  tag: '2026'
+  tag: '2026-0.4.6'
 labels:
 - openclaw
 
