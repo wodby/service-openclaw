@@ -20,8 +20,10 @@ endpoints:
 configs:
 - name: config
   title: OpenClaw config
-  config: openclaw.js.tmpl
   filepath: /etc/gotpl/openclaw.json.tmpl
+  default:
+    source: image
+    filepath: /etc/gotpl/openclaw.json.tmpl
 
 env:
 - name: OPENCLAW_GATEWAY_CONTROLUI_ALLOWED_ORIGIN_JSON
