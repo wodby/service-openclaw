@@ -24,7 +24,7 @@ configuration for OpenClaw.
 | Containers | `openclaw` using `wodby/openclaw` |
 | Endpoints | `openclaw`: HTTP 18789 (main) |
 | Volumes | Data, 1 GB |
-| Helm | chart `oci://registry-1.docker.io/wodby/openclaw`; version `0.1.0` |
+| Helm | chart `oci://registry-1.docker.io/wodby/openclaw`; version `0.1.1` |
 | Configuration | 1 configuration files, 1 generated or fixed tokens |
 
 ## Use this service
