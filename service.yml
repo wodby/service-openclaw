@@ -54,11 +54,16 @@ volumes:
 #    - name: primary.persistence.existingClaim
 #      value: '{{volumes.spool.claim}}'
 
+deployment:
+  strategy: rolling
+  minReady: 10s
+  shutdownGracePeriod: 30s
+
 helm:
   name: wodby
   source: oci://registry-1.docker.io/wodby/openclaw
   chart: oci://registry-1.docker.io/wodby/openclaw
-  version: 0.1.1
+  version: 0.2.0
   values:
   - name: gatewayToken
     value: '{{gateway_token}}'
