@@ -2,6 +2,7 @@ name: openclaw
 icon: openclaw
 type: service
 title: OpenClaw
+guidance: GUIDANCE.md
 options:
 - version: '2026'
   tag: 2026-r0
