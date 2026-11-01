@@ -1,6 +1,6 @@
 # OpenClaw on Wodby
 
-What Wodby sets up for OpenClaw on this service. It runs the `wodby/openclaw` image, which starts the OpenClaw gateway on port 18789. The port is private.
+What Wodby sets up for OpenClaw on this service. It runs the `wodby/openclaw` image, which starts the OpenClaw gateway on port 18789.
 
 ## Generated configuration
 
@@ -20,9 +20,18 @@ The first provider present, in the order above, is the default agent. Models and
 
 ## Access
 
+- Port 18789 is the service's main HTTP endpoint and is not marked private, because Application Access serves only routable HTTP endpoints. The OpenClaw stack requires Private network access for the entire app, so its public route is suppressed from creation and the Control UI answers only on the provider's private address.
+- A custom stack that uses this service without requiring Application Access gets a public address. The Control UI is an administration interface, so such a stack must require Application Access too.
 - The service token `gateway_token` is passed to the container as `OPENCLAW_GATEWAY_TOKEN`. Clients of the gateway and the Control UI authenticate with it.
-- `OPENCLAW_GATEWAY_CONTROLUI_ALLOWED_ORIGIN_JSON` lists the origins allowed to open the Control UI: the environment's primary host, the service's address inside the cluster and the local address. It follows the primary host.
+- `OPENCLAW_GATEWAY_CONTROLUI_ALLOWED_ORIGIN_JSON` lists the origins allowed to open the Control UI: the service's primary route host, the service's address inside the cluster and the local address. OpenClaw also accepts a `.ts.net` address that matches the request's host.
 - The gateway binds to all interfaces of the container (`bind: "lan"`).
+
+## Open the Control UI
+
+1. Connect the device to the Access provider's private network.
+2. Open the address listed on the environment's Endpoints > Domains page.
+3. Paste `gateway_token` into **Gateway secret**.
+4. A new browser waits for a one-time approval. In the container, run `openclaw devices list`, then `openclaw devices approve <requestId>`. The page connects by itself.
 
 ## Data
 

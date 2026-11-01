@@ -15,8 +15,10 @@ endpoints:
   - name: openclaw
     number: 18789
     protocol: http
-    private: true
     main: true
+    # Application Access needs a routable HTTP endpoint. The stack requires
+    # private-network access, which suppresses public routing from creation.
+    private: false
 
 configs:
 - name: config
