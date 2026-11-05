@@ -85,6 +85,10 @@ workloads:
   containers:
   - name: openclaw
     image: wodby/openclaw
+    resources:
+      request:
+        cpu: 10
+        memory: 160
     helm:
       env: envVars
       resources: resources
