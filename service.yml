@@ -5,7 +5,7 @@ title: OpenClaw
 guidance: GUIDANCE.md
 options:
 - version: '2026'
-  tag: 2026-r16
+  tag: 2026-r17
 labels:
 - openclaw
 
