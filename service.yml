@@ -5,8 +5,8 @@ title: OpenClaw
 guidance: GUIDANCE.md
 options:
 - version: '2026'
-  tag: 2026-r24
-  digest: sha256:836262425ffa1615ab2d2ef5dd948c699ffab11cecc54bd4c110c44c92d683f1
+  tag: 2026-r25
+  digest: sha256:65d595efa886063b88f70e70136854004905fabd2b96390bbfbba06089bcd9cc
 labels:
 - openclaw
 
